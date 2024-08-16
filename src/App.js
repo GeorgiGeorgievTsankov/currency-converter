@@ -48,7 +48,55 @@ export default function App() {
     }
   };
 
-  return (
+//   return (
+//     <div>
+//       <input
+//         type="number"
+//         value={amount}
+//         onChange={handleAmountChange}
+//         min="1" // Prevent zero or negative values
+//         placeholder="Enter amount"
+//         // disabled={isLoading}
+//       />
+//       <select
+//         value={fromCur}
+//         onChange={(e) => setFromCur(e.target.value)}
+//         // disabled={isLoading}
+//       >
+//         <option value="USD">USD</option>
+//         <option value="EUR">EUR</option>
+//         <option value="CAD">CAD</option>
+//         <option value="INR">INR</option>
+//         <option value="TRY">TRY</option>
+//         <option value="BGN">BGN</option>
+//         <option value="CNY">CNY</option>
+//         <option value="HKD">HKD</option>
+//       </select>
+//       <p className='go-to'>⇓</p>
+//       <select
+//         value={toCur}
+//         onChange={(e) => setToCur(e.target.value)}
+//         // disabled={isLoading}
+//       >
+//         <option value="USD">USD</option>
+//         <option value="EUR">EUR</option>
+//         <option value="CAD">CAD</option>
+//         <option value="INR">INR</option>
+//         <option value="TRY">TRY</option>
+//         <option value="BGN">BGN</option>
+//         <option value="CNY">CNY</option>
+//         <option value="HKD">HKD</option>
+//       </select>
+//       {amount > 0 && ( // Show result only if amount is greater than 0
+//         <p>
+//           {converted} {toCur}
+//         </p>
+//       )}
+//     </div>
+//   );
+// }
+
+   return (
     <div>
       <input
         type="number"
@@ -56,12 +104,12 @@ export default function App() {
         onChange={handleAmountChange}
         min="1" // Prevent zero or negative values
         placeholder="Enter amount"
-        // disabled={isLoading}
+        disabled={isLoading} // Disable input while loading
       />
       <select
         value={fromCur}
         onChange={(e) => setFromCur(e.target.value)}
-        // disabled={isLoading}
+        disabled={isLoading} // Disable select while loading
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -76,7 +124,7 @@ export default function App() {
       <select
         value={toCur}
         onChange={(e) => setToCur(e.target.value)}
-        // disabled={isLoading}
+        disabled={isLoading} // Disable select while loading
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -87,10 +135,14 @@ export default function App() {
         <option value="CNY">CNY</option>
         <option value="HKD">HKD</option>
       </select>
-      {amount > 0 && ( // Show result only if amount is greater than 0
-        <p>
-          {converted} {toCur}
-        </p>
+      {isLoading ? (
+        <p>Loading...</p> // Show loading indicator
+      ) : (
+        amount > 0 && ( // Show result only if amount is greater than 0
+          <p>
+            {converted} {toCur}
+          </p>
+        )
       )}
     </div>
   );
